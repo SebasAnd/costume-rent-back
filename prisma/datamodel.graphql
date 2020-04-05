@@ -10,19 +10,33 @@ type Category {
   name: String!
 }
 
-enum Status {
-  ready
-  loundry
-  rent
-  dirty
-  repair
+enum CostumeStatus {
+  READY
+  RENT
+  DIRTY
+  REPAIR
+  LOUNDRY
 }
 
 type Costume {
   id: ID! @id
   code: String! @unique
   category: Category!
-  status: Status! @default(value: ready)
+  status: CostumeStatus! @default(value: READY)
   purchase_value: Int!
   purchase_date: DateTime!
+}
+
+type Client {
+  id: ID!
+  name: String!
+  birthday: String!
+  costumes: [Costume!]!
+}
+
+type Rent {
+  id: ID! @id
+  date: DateTime!
+  costume: Costume!
+  client: Client!
 }
