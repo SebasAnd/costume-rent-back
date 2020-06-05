@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  prisma:
+    image: prismagraphql/prisma:1.34
+    restart: on-failure
+    ports:
+      - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: db
+            port: 5432
+            user: postgres
+            password: hard_password
+  db:
+    image: postgres:9-alpine
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: hard_password
