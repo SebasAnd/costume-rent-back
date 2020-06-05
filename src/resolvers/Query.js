@@ -1,7 +1,7 @@
-const { getUserId } = require('../utils')
+const { getUserId } = require('../utils');
 
 const Query = {
-  feed(parent, args, context) {
+  /* feed(parent, args, context) {
     return context.prisma.posts({ where: { published: true } })
   },
   drafts(parent, args, context) {
@@ -16,11 +16,14 @@ const Query = {
   },
   post(parent, { id }, context) {
     return context.prisma.post({ id })
-  },
+  }, */
   me(parent, args, context) {
-    const id = getUserId(context)
-    return context.prisma.user({ id })
+    const id = getUserId(context);
+    return context.prisma.user({ id });
   },
-}
+  categories(parent, args, context) {
+    return context.prisma.categories();
+  },
+};
 
-module.exports = { Query }
+module.exports = { Query };

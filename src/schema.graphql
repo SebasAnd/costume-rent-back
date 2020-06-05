@@ -1,17 +1,20 @@
 type Query {
   me: User
+  categories(id: String, skip: Int, first: Int): [Category!]!
+  statuses: CostumeStatus!
 }
 
 type Mutation {
   login(email: String!, password: String!): AuthPayload!
-  createCostume(
-    code: String
-    category: Category!
-    purchase_value: Int!
-    purchase_date: DateTime!
-  ): Costume!
-  updateCostume(code: String!, status: CostumeStatus!): Costume!
-  createRent(costume: String!, client: String!, date: DateTime): Rent!
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  # createCostume(
+  #   code: String
+  #   category: Category!
+  #   purchase_value: Int!
+  #   purchase_date: DateTime!
+  # ): Costume!
+  # updateCostume(code: String!, status: CostumeStatus!): Costume!
+  # createRent(costume: String!, client: String!, date: DateTime): Rent!
 }
 
 # type Subscription {
@@ -37,31 +40,31 @@ enum CostumeStatus {
   LOUNDRY
 }
 
-type Costume {
-  id: ID!
-  code: String!
-  status: CostumeStatus!
-  category: Category!
-  status: Status!
-  purchase_value: Int!
-  purchase_date: DateTime!
-}
+# type Costume {
+#   id: ID!
+#   code: String!
+#   status: CostumeStatus!
+#   category: Category!
+#   status: Status!
+#   purchase_value: Int!
+#   purchase_date: DateTime!
+# }
 
 type Category {
   id: ID!
   name: String!
 }
 
-type Client {
-  id: ID!
-  name: String!
-  birthday: String!
-  costumes: [Costume!]!
-}
+# type Client {
+#   id: ID!
+#   name: String!
+#   birthday: String!
+#   costumes: [Costume!]!
+# }
 
-type Rent {
-  id: ID!
-  date: DateTime!
-  costume: Costume!
-  client: Client!
-}
+# type Rent {
+#   id: ID!
+#   date: DateTime!
+#   costume: Costume!
+#   client: Client!
+# }
