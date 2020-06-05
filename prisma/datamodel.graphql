@@ -28,7 +28,7 @@ type Costume {
 }
 
 type Client {
-  id: ID!
+  id: ID! @id
   name: String!
   birthday: String!
   costumes: [Costume!]!
